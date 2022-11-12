@@ -1,2 +1,4 @@
 # AJAX_project
-Project for JavaScript course, AJAX call to a live REST API
+
+Project 2 for JavaScript course: AJAX call to a live REST API
+Laurea University of Applied Scienses
