@@ -10,6 +10,8 @@
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
+        <!--MY STYLES-->
+        <link rel="stylesheet" href="styles.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -20,8 +22,21 @@
     <body>
         <h1 class="text-center">Ajax-kunkku</h1>
         
-        <div class="">
-            <button></button>
+        <div class="container">
+            <p>Get everything you need to know</p>
+            <button id="get" class="btn-info" type="button">Most impressive button</button>
+            <p id="info"></p>
+        </div>
+        <div id="data">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td><strong>Genre</strong></td>
+                          
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
