@@ -11,8 +11,57 @@ function filterMovies() {
         case "Animaatio":
             genre = "Animaatio";
             break;
+        
+        case "Dokumentti":
+            genre = "Dokumentti";
+            break;
         case "Draama":
             genre = "Draama";
+            break;    
+        case "Fantasia":
+            genre = "Fantasia";
+            break;
+        case "Jännitys":
+            genre = "Jännitys";
+            break;
+        case "Kauhu":
+            genre = "Kauhu";
+            break;
+        case "Komedia":
+            genre = "Komedia";
+            break;
+        case "Konsertti":
+            genre = "Konsertti";
+            break;
+        case "Kotimainen":
+            genre = "Kotimainen";
+            break;
+        case "Marvel":
+            genre = "Marvel";
+            break;
+        case "Musiikki":
+            genre = "Musiikki";
+            break;
+        case "Ooppera":
+            genre = "Ooppera";
+            break;
+        case "Perhe-elokuva":
+            genre = "Perhe-elokuva";
+            break;
+        case "Sci-fi":
+            genre = "Sci-fi";
+            break;
+        case "Seikkailu":
+            genre = "Seikkailu";
+            break;
+        case "Toiminta":
+            genre = "Toiminta";
+            break;   
+        case "Urheilu":
+            genre = "Urheilu";
+            break;
+        case "Western":
+            genre = "Western";
             break;
         default:
             genre = "";
@@ -56,7 +105,15 @@ function filterInfo(xml) {
     var event = xmlDoc.getElementsByTagName("Event");
     var titles = xmlDoc.getElementsByTagName("Title");
     var genres = xmlDoc.getElementsByTagName("Genres");
-    //TARU VOISKO TÄHÄN KOKEILLA ETTÄ JOS EI OLEKAAN JUST SEN GENREN LEFFOJA OLEMASSA, NI ALERT?
+   
+    // If there's no movies on the selected genre, alert user
+    if (event.length == 0) {
+        var genreName = document.getElementById("moviegenre").value;
+        if (genreName =="") {
+            alert("Valitusta genrestä ei ole tällä hetkellä elokuvia. Valitse jokin toinen.")
+            document.getElementById("moviegenre").value = "";
+        }
+    }
 
    // var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
    // var tableImg = "<img id='movieimg' src='" + xmlDoc.getElementsByTagName("EventSmallImagePortrait")[i].childNodes[0].nodeValue + "'></img>";
