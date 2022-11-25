@@ -4,3 +4,6 @@
 .btn-info {
     border-radius: 8px;
 }
+td {
+    display: table-cell;
+}

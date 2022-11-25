@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="EN">
+<html lang="FI">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,19 +20,45 @@
         <![endif]-->
     </head>
     <body>
-        <h1 class="text-center">Ajax-kunkku</h1>
+        <h1 class="text-center">Finnkinon elokuvat</h1>
         
+    
         <div class="container">
-            <p>Get everything you need to know</p>
-            <button id="get" class="btn-info" type="button">Most impressive button</button>
-            <p id="info"></p>
+            <p>Valitse listalta haluamasi elokuvagenre</p>
+            <form id="movies" action="">
+            <input id="moviegenre" list="genres" name="genre">
+            <datalist id="genres">¨
+                <option value="Animaatio">
+                <option value="Dokumentti"></option>
+                <option value="Draama">
+                <option value="Fantasia">
+                <option value="Jännitys"></option>
+                <option value="Kauhu"></option>
+                <option value="Komedia">
+                <option value="Konsertti"></option>
+                <option value="Kotimainen"></option>
+                <option value="Marvel"></option>
+                <option value="Musiikki"></option>
+                <option value="Ooppera"></option>
+                <option value="Perhe-elokuva"></option>
+                <option value="Sci-fi">
+                <option value="Seikkailu"></option>
+                <option value="Toiminta">
+                <option value="Urheilu"></option>
+                <option value="Western"></option>
+            
+                    
+            </datalist>
+            <button id="get" class="btn-info" type="submit">Hae</button>
+             <!--   <p id="info"></p> -->
+            </form>
         </div>
         <div id="data">
             <table>
                 <tbody>
                     <tr>
-                        <td><strong>Title</strong></td>
-                        <td><strong>Genre</strong></td>
+                        <td><strong></strong></td>
+                        <td><strong></strong></td>
                           
                     </tr>
                 </tbody>
@@ -42,6 +68,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--My own JavaScript-->
         <script src="ajax.js"></script>
     </body>
 </html>
