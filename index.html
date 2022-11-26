@@ -20,48 +20,42 @@
         <![endif]-->
     </head>
     <body>
-        <h1 class="text-center">Finnkinon elokuvat</h1>
+        <h1 class="text-center">Pääkaupunkiseudun Finnkino</h1>
         
     
         <div class="container">
-            <p>Valitse listalta haluamasi elokuvagenre</p>
-            <form id="movies" action="">
-            <input id="moviegenre" list="genres" name="genre">
-            <datalist id="genres">¨
-                <option value="Animaatio">
-                <option value="Dokumentti"></option>
-                <option value="Draama">
-                <option value="Fantasia">
-                <option value="Jännitys"></option>
-                <option value="Kauhu"></option>
-                <option value="Komedia">
-                <option value="Konsertti"></option>
-                <option value="Kotimainen"></option>
-                <option value="Marvel"></option>
-                <option value="Musiikki"></option>
-                <option value="Ooppera"></option>
-                <option value="Perhe-elokuva"></option>
-                <option value="Sci-fi">
-                <option value="Seikkailu"></option>
-                <option value="Toiminta">
-                <option value="Urheilu"></option>
-                <option value="Western"></option>
-            
-                    
+            <p>Valitse listalta haluamasi elokuvateatteri</p>
+            <form id="movies">
+            <input class="selection" id="movietheatre" list="theatres" name="theatre">
+            <datalist id="theatres">¨
+                <option value="Pääkaupunkiseutu"></option>
+                <option value="Espoo"></option>
+                <option value="Espoo: Omena"></option>
+                <option value="Espoo: Sello"></option>
+                <option value="Helsinki"></option>
+                <option value="Helsinki: Itis"></option>
+                <option value="Helsinki: Kinopalatsi"></option>
+                <option value="Helsinki: Maxim"></option>
+                <option value="Helsinki: Tennispalatsi"></option>
+                <option value="Vantaa: Flamingo"></option>
             </datalist>
             <button id="get" class="btn-info" type="submit">Hae</button>
              <!--   <p id="info"></p> -->
             </form>
         </div>
         <div id="data">
+            
             <table>
                 <tbody>
                     <tr>
-                        <td><strong></strong></td>
-                        <td><strong></strong></td>
-                          
+                       
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    
                     </tr>
                 </tbody>
+            
             </table>
         </div>
         <!-- jQuery -->

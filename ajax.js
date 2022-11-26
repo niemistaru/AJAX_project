@@ -1,79 +1,76 @@
-//event listener for button
-document.querySelector('button').addEventListener("click", getInfo);
+//TAAS UUS YRITYS EVENT LISTENERIIN
+document.querySelector('input').addEventListener('input', function(event) {
+    filterMovies(event.target.value);
+});
 
-//Variables needed
-var genre;
 
-//After choosing a genre from drop-down menu, filtering information
-function filterMovies() {
-    document.getElementById("moviegenre").select();
-    switch (document.getElementById("moviegenre").value) {
-        case "Animaatio":
-            genre = "Animaatio";
-            break;
-        
-        case "Dokumentti":
-            genre = "Dokumentti";
-            break;
-        case "Draama":
-            genre = "Draama";
-            break;    
-        case "Fantasia":
-            genre = "Fantasia";
-            break;
-        case "Jännitys":
-            genre = "Jännitys";
-            break;
-        case "Kauhu":
-            genre = "Kauhu";
-            break;
-        case "Komedia":
-            genre = "Komedia";
-            break;
-        case "Konsertti":
-            genre = "Konsertti";
-            break;
-        case "Kotimainen":
-            genre = "Kotimainen";
-            break;
-        case "Marvel":
-            genre = "Marvel";
-            break;
-        case "Musiikki":
-            genre = "Musiikki";
-            break;
-        case "Ooppera":
-            genre = "Ooppera";
-            break;
-        case "Perhe-elokuva":
-            genre = "Perhe-elokuva";
-            break;
-        case "Sci-fi":
-            genre = "Sci-fi";
-            break;
-        case "Seikkailu":
-            genre = "Seikkailu";
-            break;
-        case "Toiminta":
-            genre = "Toiminta";
-            break;   
-        case "Urheilu":
-            genre = "Urheilu";
-            break;
-        case "Western":
-            genre = "Western";
-            break;
-        default:
-            genre = "";
-            document.getElementById("moviegenre").value = "";
+//LAITETAAN TÄÄ KU EI MIKÄÄN TOIMIwindow.onload = document.getElementById("movietheatre").select();
+//event listener for button TAI SITTTEN INPUT
+/*TÄTÄKIN KOKEILIN
+window.onload = function() {
+    document.querySelector('input').oninput = function () {
+        filterMovies(this.value);
     }
+}
+*/
+//document.querySelector('input').oninput = filterMovies();
+   
+//laitetaas tää hetkeks piiloon input.addEventListener("select", filterMovies);
+/*
+const getButton = document.querySelector('.btn-info');
+getButton.addEventListener("click", filterMovies);
+*/
+//Variables needed
+var theatreID;
+
+//After choosing a theatre from drop-down menu, filtering information
+function filterMovies() {
+    document.getElementById("movietheatre").select();
+    switch (document.getElementById("movietheatre").value) {
+        case "Pääkaupunkiseutu":
+            theatreID = 1014;
+            break;
+        case "Espoo":
+            theatreID = 1012;
+            break;
+        case "Espoo: Omena":
+            theatreID = 1039;
+            break;    
+        case "Espoo: Sello":
+            theatreID = 1038;
+            break;
+        case "Helsinki":
+            theatreID = 1002;
+            break;
+        case "Helsinki: Itis":
+            theatreID = 1045;
+            break;
+        case "Helsinki: Kinopalatsi":
+            theatreID = 1031;
+            break;
+        case "Helsinki: Maxim":
+            theatreID = 1032;
+            break;
+        case "Helsinki: Tennispalatsi":
+            theatreID = 1033;
+            break;
+        case "Vantaa: Flamingo":
+            theatreID = 1013;
+            break;
+       /*TARVIIKO TÄTÄ?
+            default:
+            theatreID = null;
+            document.getElementById("movietheatre").value = "";
+            */
+    }
+    console.log(theatreID);
     getInfo();
 }
 
 //Function to fetch info from api
 function getInfo() {
-    if (genre != undefined) {
-        var url = "https://www.finnkino.fi/xml/Events/" + genre;
+    if (theatreID != undefined) {
+        var url = "https://www.finnkino.fi/xml/Schedule/?area" + theatreID;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -84,51 +81,47 @@ function getInfo() {
         xmlhttp.send();
     }
 }
-/* TÄMÄ HETKEKSI PIILOON, EI TOIMINU, KOKEILEN ALEMPAA
-Kokeillaan, että saanko tähän mitään. Genren perusteella?
-function finterInfo(xml) {
-    var x, i, xmlDoc, txt;
-    xmlDoc = xml.responseXML;
-    table1 = "";
-    x = xmlDoc.getElementsByTagName('Event');
-    for (i = 0; i < x.length; i++) {
-        txt += x[i].getAttributeNode('Genres').nodeValue + "<br>";
-    }
-    document.getElementById("data").innerHTML = table1;
-}
-_*/
 
-//Function to parse xml
+//Function to parse xml: image, title
 function filterInfo(xml) {
     var i;
     var xmlDoc = xml.responseXML;
-    var event = xmlDoc.getElementsByTagName("Event");
-    var titles = xmlDoc.getElementsByTagName("Title");
-    var genres = xmlDoc.getElementsByTagName("Genres");
-   
-    // If there's no movies on the selected genre, alert user
-    if (event.length == 0) {
-        var genreName = document.getElementById("moviegenre").value;
-        if (genreName =="") {
-            alert("Valitusta genrestä ei ole tällä hetkellä elokuvia. Valitse jokin toinen.")
-            document.getElementById("moviegenre").value = "";
+    var table1= "<table>";
+    //<tbody><tr><td></td><td></td></tr>";
+    var shows = xmlDoc.getElementsByTagName("Show");
+     // If there's no movies in the selected theatre, alert user
+     if (shows.length == 0) {
+        var theatreName = document.getElementById("movietheatre").value;
+        if (theatreName =="") {
+            alert("Valitussa teatterissa " + theatreName + " ei mene tällä hetkellä elokuvia. Valitse jokin toinen.")
+            document.getElementById("movietheatre").value = "";
         }
-    }
 
-   // var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
-   // var tableImg = "<img id='movieimg' src='" + xmlDoc.getElementsByTagName("EventSmallImagePortrait")[i].childNodes[0].nodeValue + "'></img>";
-    var table1= "<table><tbody><tr><td><strong>Title</strong></td><td><strong>Genre</strong></td></tr>";
-    //console.log(xmlDoc);
-    for (i = 0; i <event.length; i++) {
-        table1 += "<tr><td>" + event[i].childNodes[0].nodeValue + "</td>" + "<td>" + titles[i].childNodes[0].nodeValue + "</td>" + "<td>" + genres[i].childNodes[0].nodeValue + "</td></tr>";
-
+    } else { 
+        //Laitan titles ja showtime piiloon, ku ei toi tajuu. Sijoitan siis getElements tuonne taulukon sisään
+        //var titles = xmlDoc.getElementsByTagName("Title");
+        //var showtime = xmlDoc.getElementsByTagName("dttmShowStart"); 
+         //console.log(xmlDoc);
+        for (i = 0; i <shows.length; i++) {
+            // tää image oli forin yllä, siirsin tähän että jos se ei siis tajuu tota iitä siksi
+            var image = "<img id='moviePic' src='" + shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue + "'></img>";
+           //save the info to table
+            table1 += "<tr>"
+            //OHO OLI TUPLAT <td id='image'>" + image + 
+            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +"</td>" + 
+            "<td id='image'>" + image + "</td>" +
+            "<td id='time'>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue + 
+            "</td></tr>";
          }
-table1 += "</tbody></table>";
-document.getElementById("data").innerHTML = table1;
+    table1 += "</table>";
+    document.getElementById("data").innerHTML = table1;
+    }
 }
 
 
-
+ // var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
+   // var tableImg = "<img id='movieimg' src='" + xmlDoc.getElementsByTagName("EventSmallImagePortrait")[i].childNodes[0].nodeValue + "'></img>";
+   
 /*
 document.getElementById("info").innerHTML =
 this.responseText;
