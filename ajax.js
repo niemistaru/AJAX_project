@@ -1,4 +1,4 @@
-//TAAS UUS YRITYS EVENT LISTENERIIN
+//Event listener to input (select movie theatre)
 document.querySelector('input').addEventListener('input', function(event) {
     filterMovies(event.target.value);
 });
@@ -57,13 +57,13 @@ function filterMovies() {
         case "Vantaa: Flamingo":
             theatreID = 1013;
             break;
-       /*TARVIIKO TÄTÄ?
-            default:
+     
+        default:
             theatreID = null;
             document.getElementById("movietheatre").value = "";
-            */
+        
     }
-    console.log(theatreID);
+   // console.log(theatreID);
     getInfo();
 }
 
@@ -86,8 +86,7 @@ function getInfo() {
 function filterInfo(xml) {
     var i;
     var xmlDoc = xml.responseXML;
-    var table1= "<table>";
-    //<tbody><tr><td></td><td></td></tr>";
+    var table1= "<table><tbody>";
     var shows = xmlDoc.getElementsByTagName("Show");
      // If there's no movies in the selected theatre, alert user
      if (shows.length == 0) {
@@ -97,23 +96,15 @@ function filterInfo(xml) {
             document.getElementById("movietheatre").value = "";
         }
 
-    } else { 
-        //Laitan titles ja showtime piiloon, ku ei toi tajuu. Sijoitan siis getElements tuonne taulukon sisään
-        //var titles = xmlDoc.getElementsByTagName("Title");
-        //var showtime = xmlDoc.getElementsByTagName("dttmShowStart"); 
-         //console.log(xmlDoc);
+    } else {   
         for (i = 0; i <shows.length; i++) {
-            // tää image oli forin yllä, siirsin tähän että jos se ei siis tajuu tota iitä siksi
             var image = "<img id='moviePic' src='" + shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue + "'></img>";
-           //save the info to table
-            table1 += "<tr>"
-            //OHO OLI TUPLAT <td id='image'>" + image + 
-            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +"</td>" + 
-            "<td id='image'>" + image + "</td>" +
+            table1 += "<tr><td id='image'>" + image + "</td>" +
+            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +"</td>" +
             "<td id='time'>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue + 
             "</td></tr>";
          }
-    table1 += "</table>";
+    table1 += "</tbody></table>";
     document.getElementById("data").innerHTML = table1;
     }
 }
