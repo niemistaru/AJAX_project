@@ -51,12 +51,10 @@ function filterMovies() {
      
         default:
             theatreID = null;
-             //kokeilen saisko tän lisämällä toimimaan
             var name = document.getElementById("movietheatre").value;
             alert ("Teatterissa " + name + " ei mene tänään elokuvia, valitse jokin toinen.");
             document.getElementById("movietheatre").value = "";
     }
-   // console.log(theatreID);
     getInfo();
 }
 
@@ -83,7 +81,6 @@ function filterInfo(xml) {
     var shows = xmlDoc.getElementsByTagName("Show");
      // If there's no movies in the selected theatre, alert user
      if (shows.length == 0) {
-        
             alert("Valitussa teatterissa " + theatreName + " ei mene tällä hetkellä elokuvia. Valitse jokin toinen.")
             document.getElementById("movietheatre").value = "";
         } else {   
