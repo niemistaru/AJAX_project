@@ -23,7 +23,15 @@ getButton.addEventListener("click", filterMovies);
 //Variables needed
 var theatreID;
 
-//After choosing a theatre from drop-down menu, filtering information
+//Get date and display it in Finnish way
+var date = new Date();
+var day = date.getDate();
+var month = (date.getMonth() + 1);
+var year = date.getFullYear();
+date = day + "." + month + "." + year;
+document.getElementById("date").innerHTML = date;
+
+//Select a theatre from drop-down menu --> filter information
 function filterMovies() {
     document.getElementById("movietheatre").select();
     switch (document.getElementById("movietheatre").value) {
@@ -100,8 +108,11 @@ function filterInfo(xml) {
         for (i = 0; i <shows.length; i++) {
             var image = "<img id='moviePic' src='" + shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue + "'></img>";
             table1 += "<tr><td id='image'>" + image + "</td>" +
-            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +"</td>" +
-            "<td id='time'>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue + 
+            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + 
+            "<br>" + "<p id='genre'>" + shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</p></td>" +
+            //Format timestamp and punctuation
+            "<td id='showdate'>" + date + "<br>"+ "<p id =time>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue.slice(11,16).replace(":", ".") + "</p></td>" +
+            "<td id='auditorium'>" + shows[i].getElementsByTagName("Theatre")[0].childNodes[0].nodeValue + "<br>" +shows[i].getElementsByTagName("TheatreAuditorium")[0].childNodes[0].nodeValue + 
             "</td></tr>";
          }
     table1 += "</tbody></table>";

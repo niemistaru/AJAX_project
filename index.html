@@ -20,11 +20,12 @@
         <![endif]-->
     </head>
     <body>
-        <h1 class="text-center">Pääkaupunkiseudun Finnkino</h1>
+        <h1 class="text-center">Pääkaupunkiseudun Finnkinot</h1>
+        <p id="date"></p>
         
     
         <div class="container">
-            <p>Valitse listalta haluamasi elokuvateatteri</p>
+            <p>Valitse listalta haluamasi elokuvateatteri tai alue</p>
             <form id="movies">
             <input class="selection" id="movietheatre" list="theatres" name="theatre">
             <datalist id="theatres">¨
@@ -39,20 +40,19 @@
                 <option value="Helsinki: Tennispalatsi"></option>
                 <option value="Vantaa: Flamingo"></option>
             </datalist>
-            <button id="get" class="btn-info" type="submit">Hae</button>
-             <!--   <p id="info"></p> -->
+            <!--TÄLLÄHÄN EI OIKEESTAAN TEE MITÄÄN? 
+                <button id="get" class="btn-info" type="submit">Hae</button>-->
             </form>
         </div>
         <div id="data">
             
-            <table>
+            <table class="table-info">
                 <tbody>
                     <tr>
-                       
                         <td></td>
                         <td></td>
                         <td></td>
-                    
+                        <td></td>
                     </tr>
                 </tbody>
             
