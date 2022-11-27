@@ -13,31 +13,34 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
 }
+#txt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 17px;
+    text-align: center;
+}
+
 .container {
     align-items: center;
     justify-content: center;
-    padding-left: 30%;
-    padding-right: 30%;
     text-align: center;
 }
 #movietheatre {
     border-radius: 5px;
     line-height: 25px;
-
+    margin-bottom: 25px;
 }
 #data {
     margin-top: 30px;
     align-items: center;
     text-align: center;
-    padding-left: 15%;
+
 }
 table {
     background-color: #CFCCD6;
     border-radius: 10px;
+    margin: 0 auto;
 }
-td {
-    display: table-cell;
-}
+
 img {
     margin-left: 15px;
     margin-top: 15px;
@@ -62,8 +65,8 @@ img {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 25px;
 }
 #time {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,6 +78,13 @@ img {
     margin-left: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 15px;
+}
+#audName {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
     text-align: center;
     padding-right: 15px;
 }

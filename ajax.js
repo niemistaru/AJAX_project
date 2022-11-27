@@ -3,27 +3,10 @@ document.querySelector('input').addEventListener('input', function(event) {
     filterMovies(event.target.value);
 });
 
-
-//LAITETAAN TÄÄ KU EI MIKÄÄN TOIMIwindow.onload = document.getElementById("movietheatre").select();
-//event listener for button TAI SITTTEN INPUT
-/*TÄTÄKIN KOKEILIN
-window.onload = function() {
-    document.querySelector('input').oninput = function () {
-        filterMovies(this.value);
-    }
-}
-*/
-//document.querySelector('input').oninput = filterMovies();
-   
-//laitetaas tää hetkeks piiloon input.addEventListener("select", filterMovies);
-/*
-const getButton = document.querySelector('.btn-info');
-getButton.addEventListener("click", filterMovies);
-*/
 //Variables needed
 var theatreID;
 
-//Get date and display it in Finnish way
+//Get date and display it in a Finnish way
 var date = new Date();
 var day = date.getDate();
 var month = (date.getMonth() + 1);
@@ -68,8 +51,10 @@ function filterMovies() {
      
         default:
             theatreID = null;
+             //kokeilen saisko tän lisämällä toimimaan
+            var name = document.getElementById("movietheatre").value;
+            alert ("Teatterissa " + name + " ei mene tänään elokuvia, valitse jokin toinen.");
             document.getElementById("movietheatre").value = "";
-        
     }
    // console.log(theatreID);
     getInfo();
@@ -78,7 +63,7 @@ function filterMovies() {
 //Function to fetch info from api
 function getInfo() {
     if (theatreID != undefined) {
-        var url = "https://www.finnkino.fi/xml/Schedule/?area" + theatreID;
+        var url = "https://www.finnkino.fi/xml/Schedule/?area=" + theatreID;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -98,50 +83,22 @@ function filterInfo(xml) {
     var shows = xmlDoc.getElementsByTagName("Show");
      // If there's no movies in the selected theatre, alert user
      if (shows.length == 0) {
-        var theatreName = document.getElementById("movietheatre").value;
-        if (theatreName =="") {
+        
             alert("Valitussa teatterissa " + theatreName + " ei mene tällä hetkellä elokuvia. Valitse jokin toinen.")
             document.getElementById("movietheatre").value = "";
-        }
-
-    } else {   
-        for (i = 0; i <shows.length; i++) {
-            var image = "<img id='moviePic' src='" + shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue + "'></img>";
-            table1 += "<tr><td id='image'>" + image + "</td>" +
-            "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + 
-            "<br>" + "<p id='genre'>" + shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</p></td>" +
-            //Format timestamp and punctuation
-            "<td id='showdate'>" + date + "<br>"+ "<p id =time>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue.slice(11,16).replace(":", ".") + "</p></td>" +
-            "<td id='auditorium'>" + shows[i].getElementsByTagName("Theatre")[0].childNodes[0].nodeValue + "<br>" +shows[i].getElementsByTagName("TheatreAuditorium")[0].childNodes[0].nodeValue + 
-            "</td></tr>";
-         }
+        } else {   
+            for (i = 0; i < shows.length; i++) {
+                var image = "<img id='moviePic' src='" + shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue + "'></img>";
+                table1 += "<tr><td id='image'>" + image + "</td>" +
+                "<td id='title'>" + shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + 
+                "<br>" + "<p id='genre'>" + shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</p></td>" +
+                //Format timestamp and punctuation
+                "<td id='showdate'>" + date + "<br>"+ "<p id =time>" + shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue.slice(11,16).replace(":", ".") + "</p></td>" +
+                "<td id='auditorium'>" + shows[i].getElementsByTagName("Theatre")[0].childNodes[0].nodeValue + "<br><p id='audName'>" +shows[i].getElementsByTagName("TheatreAuditorium")[0].childNodes[0].nodeValue + 
+                "</p></td></tr>";
+            }
     table1 += "</tbody></table>";
     document.getElementById("data").innerHTML = table1;
+    document.getElementById("movietheatre").value = "";
     }
 }
-
-
- // var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
-   // var tableImg = "<img id='movieimg' src='" + xmlDoc.getElementsByTagName("EventSmallImagePortrait")[i].childNodes[0].nodeValue + "'></img>";
-   
-/*
-document.getElementById("info").innerHTML =
-this.responseText;
-//en tiiä mihin väliin tää pitäis tunkee?
-function filterInfo() {
-    var xmlDoc = xhttp.responseXML;
-    var titles = xmlDoc.getElementsByTagName("Title");
-    var origTitle = xmlDoc.getElementsByTagName("OriginalTitle");
-    var genres = xmlDoc.getElementsByTagName("Genres");
-    var table1= "<tr><th>Title</th><th>Original title</th><th>Genres</th></tr>";
-    console.log(xmlDoc);
-    for (i = 0; i <titles.length; i++) {
-        table1 += "<tr><td>" + titles[i].childNodes[0].nodeValue + "</td>" + "<td>" + 
-        origTitle[i].childNodes[0].nodeValue + "<td>" + genres[i].childNodes[0].nodeValue + "</td></tr>";
-        console.log(xmlDoc);
-
-    }
-    txt += "</tbody></table>";
-    document.getElementById("data").innerHTML = txt;
-}
-*/

@@ -25,28 +25,26 @@
         
     
         <div class="container">
-            <p>Valitse listalta haluamasi elokuvateatteri tai alue</p>
+            <p id="txt">Valitse listalta haluamasi elokuvateatteri tai alue</p>
             <form id="movies">
-            <input class="selection" id="movietheatre" list="theatres" name="theatre">
-            <datalist id="theatres">¨
-                <option value="Pääkaupunkiseutu"></option>
-                <option value="Espoo"></option>
-                <option value="Espoo: Omena"></option>
-                <option value="Espoo: Sello"></option>
-                <option value="Helsinki"></option>
-                <option value="Helsinki: Itis"></option>
-                <option value="Helsinki: Kinopalatsi"></option>
-                <option value="Helsinki: Maxim"></option>
-                <option value="Helsinki: Tennispalatsi"></option>
-                <option value="Vantaa: Flamingo"></option>
-            </datalist>
-            <!--TÄLLÄHÄN EI OIKEESTAAN TEE MITÄÄN? 
-                <button id="get" class="btn-info" type="submit">Hae</button>-->
+                <input id="movietheatre" list="theatres" name="theatres" placeholder="Valitse teatteri">
+               
+                <datalist id="theatres"> 
+                    <option value="Pääkaupunkiseutu"></option>
+                    <option value="Espoo"></option>
+                    <option value="Espoo: Omena"></option>
+                    <option value="Espoo: Sello"></option>
+                    <option value="Helsinki"></option>
+                    <option value="Helsinki: Itis"></option>
+                    <option value="Helsinki: Kinopalatsi"></option>
+                    <option value="Helsinki: Maxim"></option>
+                    <option value="Helsinki: Tennispalatsi"></option>
+                    <option value="Vantaa: Flamingo"></option>
+                </datalist>
             </form>
         </div>
         <div id="data">
-            
-            <table class="table-info">
+            <table>
                 <tbody>
                     <tr>
                         <td></td>
